@@ -38,12 +38,12 @@ public class MyNotificationService extends IntentService {
         int NOTIFICATION_ID = 1217;
         Resources resources = getResources();
         final String celebImgTxt = "http://i2.cdn.turner.com/cnn/dam/assets/140421092213-lindsay-lohan-january-2014-story-top.jpg";
-
+        int randomNumberChosen = randomNumber();
         // FIXME converted drawable as string and put into intent
         Intent intent = new Intent(this, MainActivity.class);
         Bundle extras = new Bundle();
-        extras.putString(CELEB_NAME, nameCeleb());
-        extras.putString(CELEB_IMG, celebImageChosen());
+        extras.putString(CELEB_NAME, nameCeleb(randomNumberChosen));
+        extras.putString(CELEB_IMG, celebImageChosen(randomNumberChosen));
         intent.putExtras(extras);
 
         int requestID = (int) System.currentTimeMillis();
@@ -63,21 +63,31 @@ public class MyNotificationService extends IntentService {
         notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
-    private String nameCeleb() {
-        if (count == 0) {
-            count++;
-            return "Celebrity";
+    private String nameCeleb(int numberChosen) {
+        String celebName = null;
+        switch (numberChosen) {
+            case 0: celebName = "Lindsay Lohan";
+                break;
+            case 1: celebName = "Michael Jordan";
+                break;
+            case 2: celebName = "Jackie Chan";
+                break;
+            case 3: celebName = "Bruce Willis";
+                break;
         }
-
-        String celebName = "Celebrity" + count;
-        count++;
+//        if (count == 0) {
+//            count++;
+//            return "Celebrity";
+//        }
+//        String celebName = "Celebrity" + count;
+//        count++;
         return celebName;
 
     }
 
-    public String celebImageChosen () {
+    public String celebImageChosen (int numberChosen) {
         String celebImageToDisplay = null;
-        switch (randomNumber()) {
+        switch (numberChosen) {
             case 0: celebImageToDisplay = "http://i2.cdn.turner.com/cnn/dam/assets/140421092213-lindsay-lohan-january-2014-story-top.jpg";
                 break;
             case 1: celebImageToDisplay = "http://make-me-successful.com/wp-content/uploads/2012/11/michael-jordan.jpg";
@@ -96,5 +106,5 @@ public class MyNotificationService extends IntentService {
         return n;
     }
 
-    int repoProblems;
+
 }
