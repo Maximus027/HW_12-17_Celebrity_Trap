@@ -10,6 +10,8 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
+import java.util.Random;
+
 /**
  * Created by huilin on 12/16/16.
  */
@@ -41,7 +43,7 @@ public class MyNotificationService extends IntentService {
         Intent intent = new Intent(this, MainActivity.class);
         Bundle extras = new Bundle();
         extras.putString(CELEB_NAME, nameCeleb());
-        extras.putString(CELEB_IMG, celebImgTxt);
+        extras.putString(CELEB_IMG, celebImageChosen());
         intent.putExtras(extras);
 
         int requestID = (int) System.currentTimeMillis();
@@ -71,5 +73,26 @@ public class MyNotificationService extends IntentService {
         count++;
         return celebName;
 
+    }
+
+    public String celebImageChosen () {
+        String celebImageToDisplay = null;
+        switch (randomNumber()) {
+            case 0: celebImageToDisplay = "http://i2.cdn.turner.com/cnn/dam/assets/140421092213-lindsay-lohan-january-2014-story-top.jpg";
+                break;
+            case 1: celebImageToDisplay = "http://make-me-successful.com/wp-content/uploads/2012/11/michael-jordan.jpg";
+                break;
+            case 2: celebImageToDisplay = "http://coolspotters.com/files/photos/195266/jackie-chan-profile.jpg";
+                break;
+            case 3: celebImageToDisplay = "http://imagecache2.allposters.com/images/MMPH-E/253404.jpg";
+                break;
+        }
+        return celebImageToDisplay;
+    }
+
+    public int randomNumber() {
+        Random rand = new Random();
+        int  n = rand.nextInt(4);
+        return n;
     }
 }
