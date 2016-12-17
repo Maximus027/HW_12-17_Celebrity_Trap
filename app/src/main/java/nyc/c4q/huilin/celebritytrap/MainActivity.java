@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -94,6 +95,15 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
     @Override
     public void onCelebrityClicked(Celebrity celeb) {
         Toast.makeText(this, "Celebrity Status", Toast.LENGTH_SHORT).show();
+        showEditDialog();
+
+    }
+
+    private void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        EditCelebrityDialogFragment dialogFragment = EditCelebrityDialogFragment.newInstance("some title");
+        dialogFragment.show(fm, "fragment_edit_name");
+
 
     }
 
