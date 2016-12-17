@@ -95,4 +95,6 @@ public class MyNotificationService extends IntentService {
         int  n = rand.nextInt(4);
         return n;
     }
+
+    int repoProblems;
 }
