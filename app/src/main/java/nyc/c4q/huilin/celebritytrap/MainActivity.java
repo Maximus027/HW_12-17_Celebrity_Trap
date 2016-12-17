@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
         if (intent.getExtras() != null) {
             Bundle extras = intent.getExtras();
 
+            // FIXME got the information and created celebrity with it but no image
+
             String celebName = extras.getString(CELEB_NAME);
             String celebImgTxt = extras.getString(CELEB_IMG);
             int resId = getResources().getIdentifier(celebImgTxt, "drawable", "nyc.c4q.huilin.celebritytrap");
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
     private void refreshCelebrityList() {
         celebAdapter.setData(selectAllCeleb());
     }
+
+    // TODO implement dialog with edittext and grab input to update db
 
     @Override
     public void onCelebrityClicked(Celebrity celeb) {

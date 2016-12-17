@@ -37,6 +37,7 @@ public class MyNotificationService extends IntentService {
         Resources resources = getResources();
         String celebImgTxt = resources.getResourceEntryName(R.drawable.ic_face_black_24dp);
 
+        // FIXME converted drawable as string and put into intent
         Intent intent = new Intent(this, MainActivity.class);
         Bundle extras = new Bundle();
         extras.putString(CELEB_NAME, nameCeleb());
