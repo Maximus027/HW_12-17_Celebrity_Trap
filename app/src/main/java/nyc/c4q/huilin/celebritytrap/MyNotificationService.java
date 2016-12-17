@@ -35,7 +35,7 @@ public class MyNotificationService extends IntentService {
     private void startPendingIntent() {
         int NOTIFICATION_ID = 1217;
         Resources resources = getResources();
-        String celebImgTxt = resources.getResourceEntryName(R.drawable.ic_face_black_24dp);
+        final String celebImgTxt = "http://i2.cdn.turner.com/cnn/dam/assets/140421092213-lindsay-lohan-january-2014-story-top.jpg";
 
         // FIXME converted drawable as string and put into intent
         Intent intent = new Intent(this, MainActivity.class);

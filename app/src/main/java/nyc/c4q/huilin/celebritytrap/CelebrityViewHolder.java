@@ -31,11 +31,10 @@ public class CelebrityViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(final Celebrity celeb) {
         celebName.setText(celeb.getName());
-        if (celeb.getImage() != 0) {
             Picasso.with(itemView.getContext())
-                    .load(celeb.getImage())
+                    .load(celeb.getImgUrl())
+                    .placeholder(R.drawable.ic_face_black_24dp)
                     .into(celebImgView);
-        }
 
         celebView.setOnClickListener(new View.OnClickListener() {
             @Override

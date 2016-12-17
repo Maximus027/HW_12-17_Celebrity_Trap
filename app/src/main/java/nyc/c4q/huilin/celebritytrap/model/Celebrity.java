@@ -6,15 +6,15 @@ package nyc.c4q.huilin.celebritytrap.model;
 public class Celebrity {
     private Long _id;
     private String name;
-    private int image;
+    private String imgUrl;
 
     public Celebrity() {
         this.name = "Unknown";
     }
 
-    public Celebrity(String name, int resId) {
+    public Celebrity(String name, String imgUrl) {
         this.name = name;
-        this.image = resId;
+        this.imgUrl = imgUrl;
     }
 
     public Long get_id() {
@@ -33,12 +33,12 @@ public class Celebrity {
         this.name = name;
     }
 
-    public int getImage() {
-        return image;
+    public String getImgUrl() {
+        return imgUrl;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setImgUrl(String imgUrl) {
+        this.imgUrl = imgUrl;
     }
 
 }

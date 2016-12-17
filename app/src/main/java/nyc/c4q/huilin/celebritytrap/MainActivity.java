@@ -63,9 +63,8 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
 
             String celebName = extras.getString(CELEB_NAME);
             String celebImgTxt = extras.getString(CELEB_IMG);
-            int resId = getResources().getIdentifier(celebImgTxt, "drawable", "nyc.c4q.huilin.celebritytrap");
 
-            addCeleb(new Celebrity(celebName, resId));
+            addCeleb(new Celebrity(celebName, celebImgTxt));
         }
 
     }

@@ -14,7 +14,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 public class CelebrityDatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "celeb.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     private static CelebrityDatabaseHelper instance;
 
@@ -37,7 +37,6 @@ public class CelebrityDatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         cupboard().withDatabase(db).createTables();
-
 
     }
 
