@@ -141,7 +141,9 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
     private void updateCeleb(String inputText, Celebrity celebClicked) {
         ContentValues values = new ContentValues();
         values.put("name", inputText);
-        cupboard().withDatabase(db).update(Celebrity.class, values, "name = ?", inputText);
-
+        Celebrity celebSelected = cupboard().withDatabase(db).get(celebClicked);
+        celebSelected.setName(inputText);
+        cupboard().withDatabase(db).put(celebSelected);
+        refreshCelebrityList();
     }
 }
