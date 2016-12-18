@@ -14,9 +14,5 @@ public class MyAlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Intent i = new Intent(context, MyNotificationService.class);
         context.startService(i);
-//        CelebrityDatabaseHelper dbHelper = CelebrityDatabaseHelper.getInstance(context);
-//        dbHelper.getWritableDatabase();
-//
-//        String celebName = intent.getStringExtra(CELEB_NAME);
     }
 }

@@ -2,6 +2,7 @@ package nyc.c4q.huilin.celebritytrap;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -22,7 +23,7 @@ import static nl.qbusict.cupboard.CupboardFactory.cupboard;
 import static nyc.c4q.huilin.celebritytrap.MyNotificationService.CELEB_IMG;
 import static nyc.c4q.huilin.celebritytrap.MyNotificationService.CELEB_NAME;
 
-public class MainActivity extends AppCompatActivity implements CelebrityAdapter.Listener {
+public class MainActivity extends AppCompatActivity implements CelebrityAdapter.Listener, EditCelebrityDialogListener{
 
     private SQLiteDatabase db;
     private CelebrityAdapter celebAdapter;
@@ -95,13 +96,13 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
     @Override
     public void onCelebrityClicked(Celebrity celeb) {
         Toast.makeText(this, "Celebrity Status", Toast.LENGTH_SHORT).show();
-        showEditDialog();
+        showEditDialog(celeb);
 
     }
 
-    private void showEditDialog() {
+    private void showEditDialog(Celebrity celeb) {
         FragmentManager fm = getSupportFragmentManager();
-        EditCelebrityDialogFragment dialogFragment = EditCelebrityDialogFragment.newInstance("some title");
+        EditCelebrityDialogFragment dialogFragment = EditCelebrityDialogFragment.newInstance("some title", celeb);
         dialogFragment.show(fm, "fragment_edit_name");
 
 
@@ -127,5 +128,20 @@ public class MainActivity extends AppCompatActivity implements CelebrityAdapter.
 
         AlarmManager alarm = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         alarm.setInexactRepeating(AlarmManager.RTC_WAKEUP, firstMillis, AlarmManager.INTERVAL_FIFTEEN_MINUTES / 3, pendingIntent);
+    }
+
+    @Override
+    public void onFinishEditDialog(String inputText, Celebrity celebClicked) {
+        updateCeleb(inputText, celebClicked);
+        Toast.makeText(this, "New stage name is " + inputText, Toast.LENGTH_SHORT).show();
+        
+
+    }
+
+    private void updateCeleb(String inputText, Celebrity celebClicked) {
+        ContentValues values = new ContentValues();
+        values.put("name", inputText);
+        cupboard().withDatabase(db).update(Celebrity.class, values, "name = ?", inputText);
+
     }
 }

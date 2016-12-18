@@ -6,7 +6,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 
@@ -22,8 +21,6 @@ public class MyNotificationService extends IntentService {
     public static final String CELEB_NAME = "Default as Celebrity";
     public static final String CELEB_IMG = "Headshot";
 
-    private int count = 0;
-
     public MyNotificationService() {
         super(SERVICE_NAME);
     }
@@ -36,10 +33,8 @@ public class MyNotificationService extends IntentService {
 
     private void startPendingIntent() {
         int NOTIFICATION_ID = 1217;
-        Resources resources = getResources();
-        final String celebImgTxt = "http://i2.cdn.turner.com/cnn/dam/assets/140421092213-lindsay-lohan-january-2014-story-top.jpg";
         int randomNumberChosen = randomNumber();
-        // FIXME converted drawable as string and put into intent
+
         Intent intent = new Intent(this, MainActivity.class);
         Bundle extras = new Bundle();
         extras.putString(CELEB_NAME, nameCeleb(randomNumberChosen));
@@ -75,12 +70,7 @@ public class MyNotificationService extends IntentService {
             case 3: celebName = "Bruce Willis";
                 break;
         }
-//        if (count == 0) {
-//            count++;
-//            return "Celebrity";
-//        }
-//        String celebName = "Celebrity" + count;
-//        count++;
+
         return celebName;
 
     }
